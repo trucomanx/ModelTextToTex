@@ -1,2 +1,2 @@
 # ModelTextToTex
-ModelTextToTex
+seq2seq
