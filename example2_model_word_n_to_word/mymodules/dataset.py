@@ -8,7 +8,7 @@ from nltk.tokenize import sent_tokenize # A função é usada para dividir um te
 #
 
 def load_wiki_dataset(max_len=50000):
-    dataset = load_dataset("wikipedia", "20220301.simple")
+    dataset = load_dataset("wikipedia", "20220301.simple",trust_remote_code=True)
 
     #print(dataset)
     #print(dataset['train'])
