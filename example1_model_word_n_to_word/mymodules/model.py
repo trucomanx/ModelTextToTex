@@ -1,8 +1,8 @@
 import tensorflow as tf
 
 
-def get_model(total_words):
-    inputs = tf.keras.layers.Input(shape=(1,))
+def get_model(total_words,input_shape):
+    inputs = tf.keras.layers.Input(shape=(input_shape,))
 
     x = tf.keras.layers.Embedding(total_words, 128, mask_zero=False)(inputs)
 

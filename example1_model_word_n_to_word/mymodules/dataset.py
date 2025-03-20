@@ -5,17 +5,10 @@ nltk.download('punkt_tab') # needed to use sent_tokenize
 from nltk.tokenize import sent_tokenize # A função é usada para dividir um texto em sentenças ou frases.     
 #from nltk.tokenize import word_tokenize
 
-#
 
 def load_wiki_dataset(max_len=50000):
     dataset = load_dataset("wikipedia", "20220301.simple",trust_remote_code=True)
 
-    #print(dataset)
-    #print(dataset['train'])
-
-    
-
-    # divide o texto em sentenças
     text = []
     for data in dataset['train']:
       text.extend(sent_tokenize(data['text']))
