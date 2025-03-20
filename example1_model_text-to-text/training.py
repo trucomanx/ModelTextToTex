@@ -38,7 +38,7 @@ import numpy as np
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 # 75% das sequências terão tamanho menor ou igual a esse valor
-max_sequence_len = np.int32(np.percentile([len(x) for x in input_sequences], 75))
+max_sequence_len = np.int32(np.percentile([len(x) for x in input_sequences], 95))
 
 # padd the input_sequences until the max_sequence_len
 # padding='pre': O preenchimento acontece antes da sequência, ou seja, adiciona zeros no início
@@ -49,7 +49,7 @@ input_sequences = np.array(pad_sequences(input_sequences, maxlen=max_sequence_le
 xs, labels = input_sequences[:,:-1],input_sequences[:,-1]
 
 print("padding sequences shape:",input_sequences.shape) # (791292, 18)
-print("               xs shape:",xs.shape) # (791292, 17)
+print("               xs shape:",xs.shape) # (791292, 107)
 print("           labels shape:",labels.shape) # (791292, )
 
 # build the dataset with batches of 512 and autotuned prefetch
@@ -74,13 +74,13 @@ Como o modelo "entende" que são sequências?
 
 1️⃣ Formato dos dados de entrada
 
-    Seu xs tem dimensão (N, 17), ou seja, cada amostra tem 17 números (índices de palavras).
+    Seu xs tem dimensão (N, 107), ou seja, cada amostra tem 107 números (índices de palavras).
     Como passamos todas as palavras de uma vez para o modelo, ele vê cada amostra como um grupo de palavras relacionadas.
 
 2️⃣ A camada Embedding
 
     Converte cada número (índice de palavra) em um vetor denso de tamanho 128.
-    Resultado: A entrada, que antes era (17,), vira um tensor (17, 128).
+    Resultado: A entrada, que antes era (107,), vira um tensor (107, 128).
     Agora, temos uma sequência de vetores e não só números.
 
 3️⃣ A camada LSTM
